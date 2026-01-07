@@ -1,50 +1,91 @@
 package com.bank.bank.entity;
 import jakarta.persistence.*;
-import java.time.Instant;
-
+import java.time.LocalDateTime;
+import lombok.Data;
 @Entity
-@Table(name="audit_log")
+@Table(name="auditg")
+@Data
 public class auditg {
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-    private long id;
-	private String methodname;
-	@Column(length=1000)
-	private String arguments;
-	private Instant createdAt=Instant.now();
-	public long getId() {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    private Long accountId;
+
+    private String methodName;
+
+    @Column(columnDefinition = "TEXT")
+    private String parameters;
+
+    public Long getId() {
 		return id;
 	}
-	public void setId(long id) {
+
+	
+	
+	public auditg() {
+		this.id = id;
+		this.accountId = accountId;
+		this.methodName = methodName;
+		this.parameters = parameters;
+		this.response = response;
+		this.timestamp = timestamp;
+	}
+
+
+
+	
+
+
+
+	public void setId(Long id) {
 		this.id = id;
 	}
-	public String getMethodname() {
-		return methodname;
+
+	public Long getAccountId() {
+		return accountId;
 	}
-	public void setMethodname(String methodname) {
-		this.methodname = methodname;
+
+	public void setAccountId(Long accountId) {
+		this.accountId = accountId;
 	}
-	public String getArguments() {
-		return arguments;
+
+	public String getMethodName() {
+		return methodName;
 	}
-	public void setArguments(String arguments) {
-		this.arguments = arguments;
+
+	public void setMethodName(String methodName) {
+		this.methodName = methodName;
 	}
-	public Instant getCreatedAt() {
-		return createdAt;
+
+	public String getParameters() {
+		return parameters;
 	}
-	public void setCreatedAt(Instant createdAt) {
-		this.createdAt = createdAt;
+
+	public void setParameters(String parameters) {
+		this.parameters = parameters;
 	}
-	public auditg(String methodname, String arguments) {
-		super();
-		this.id = id;
-		this.methodname = methodname;
-		this.arguments = arguments;
-		this.createdAt = createdAt;
+
+	public String getResponse() {
+		return response;
 	}
-	
-	
-	
+
+	public void setResponse(String response) {
+		this.response = response;
+	}
+
+	public LocalDateTime getTimestamp() {
+		return timestamp;
+	}
+
+	public void setTimestamp(LocalDateTime timestamp) {
+		this.timestamp = timestamp;
+	}
+
+	@Column(columnDefinition = "TEXT")
+    private String response;
+
+    private LocalDateTime timestamp;
+
 	
 }

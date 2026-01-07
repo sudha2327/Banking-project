@@ -8,12 +8,23 @@ import org.springframework.data.repository.query.Param;
 
 import com.bank.bank.entity.auditg;
 
+
 public interface auditlogrepo extends JpaRepository <auditg, Long>{
 
-	
-	@Query("""SELECT a FROM audit_log a WHERE a.account_id= :account_id and Month(a.timestamp)= :month and year(a.timestamp)= :year"""")
-
-   List<auditg> findMonthlyaudit(@Param("account_id") Long account_id, @Param("month") int month,@Param("year") int year)
+			@Query("""
+			        SELECT a FROM auditg a
+			        WHERE a.accountId = :accountId
+			        AND MONTH(a.timestamp) = :month
+			        AND YEAR(a.timestamp) = :year
+			        ORDER BY a.timestamp ASC
+			    """)
+			
+			    List<auditg> findMonthlyAudit(
+			            @Param("accountId") Long accountId,
+			            @Param("month") int month,
+			            @Param("year") int year
+			    );
+  
 	
 }
  
